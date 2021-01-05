@@ -2,13 +2,21 @@
 
 namespace App\Entity;
 
-use App\Repository\GenreRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+// use Webmozart\Assert\Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\GenreRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ORM\Entity(repositoryClass=GenreRepository::class)
+ * @ORM\Entity(repositoryClass=GenreRepository::class) 
+ * @UniqueEntity(
+ *     fields={"Libelle"},
+ *     message="Il existe déja un genre avec le libellé {{ value }}, veuillez saisir une autre libellé"
+ * )
  */
 class Genre
 {
@@ -16,16 +24,25 @@ class Genre
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"listGenreSimple", "listeGenreFull"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"listGenreSimple", "listeGenreFull"})
+     * @Assert\Length(
+     *        min = 2,
+     *        max = 50,
+     *        minMessage = "Le libellé doit contenir au moins {{ limit }} caractéres",
+     *        maxMessage = "Le libellé doit contenir au plus {{ limite }} caractéres"
+     *  )
      */
     private $libelle;
 
     /**
      * @ORM\OneToMany(targetEntity=Livre::class, mappedBy="genre")
+     * @Groups({"listeGenreFull"})
      */
     private $livres;
 
