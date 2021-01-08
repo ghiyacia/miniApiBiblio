@@ -18,7 +18,7 @@ security:
             anonymous: true
             json_login:
                 username_path: mail
-                # password_path: password
+                password_path: password
                 check_path: /app/login
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
