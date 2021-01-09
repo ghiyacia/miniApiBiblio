@@ -14,6 +14,10 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+    const ROLE_MANAGER = 'ROLE_MANAGER';
+    const ROLE_ADHERENT = 'ROLE_ADHERENT';
+    const DEFAULT_ROLE = "ROLE_ADHERENT";
     private $manager;
     private $faker;
     private $repoLivre;
@@ -63,12 +67,12 @@ class AppFixtures extends Fixture
             $this->manager->persist($adherent);
         }
         $adherent = new Adherent();
-        // $roles[] = [ADHERENT::ROLE_ADMIN];
+        $roles[] = [ADHERENT::ROLE_ADMIN];
         $adherent->setNom("riles")
             ->setPrenom("riles")
             ->setMail("riles@gmail.com")
-            ->setPassword($this->passwordEncoder->encodePassword($adherent, 'riles'));
-        // ->setRoles($roles);
+            ->setPassword($this->passwordEncoder->encodePassword($adherent, 'riles'))
+            ->setRoles($roles);
         $this->manager->persist($adherent);
 
 
