@@ -6,8 +6,8 @@ security:
     providers:
         in_db:
             entity:
-                class: App\Entity\Adherent
-                property: mail
+                class: 'App\Entity\Adherent'
+                property: 'mail'
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -39,5 +39,5 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/app/login, roles: IS_AUTHENTICATED_ANONTMOUSLY }
-         - { path: ^/app/profile, roles: IS_AUTHENTICATED_ANONTMOUSLY_FULLY }
+         - { path: ^/app/profile, roles: IS_AUTHENTICATED_FULLY }
 

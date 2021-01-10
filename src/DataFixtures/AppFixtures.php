@@ -14,10 +14,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
-    const ROLE_ADMIN = 'ROLE_ADMIN';
-    const ROLE_MANAGER = 'ROLE_MANAGER';
-    const ROLE_ADHERENT = 'ROLE_ADHERENT';
-    const DEFAULT_ROLE = "ROLE_ADHERENT";
+
     private $manager;
     private $faker;
     private $repoLivre;
@@ -66,16 +63,25 @@ class AppFixtures extends Fixture
             $this->addReference("adherent" . $i, $adherent);
             $this->manager->persist($adherent);
         }
-        $adherent = new Adherent();
-        $roles[] = [ADHERENT::ROLE_ADMIN];
-        $adherent->setNom("riles")
-            ->setPrenom("riles")
-            ->setMail("riles@gmail.com")
-            ->setPassword($this->passwordEncoder->encodePassword($adherent, 'riles'))
-            ->setRoles($roles);
-        $this->manager->persist($adherent);
 
 
+        $adherentAdmin = new Adherent();
+        $adherentAdmin->setNom("Riles")
+            ->setPrenom("Riles")
+            ->setMail("admin@gmail.com")
+            ->setPassword("Riles")
+            // ->setPassword($this->passwordEncoder->encodePassword($adherent, 'riles'))
+            ->setRoles([ADHERENT::ROLE_ADMIN]);
+        $this->manager->persist($adherentAdmin);
+
+        $adherentManager = new Adherent();
+        $adherentManager->setNom("Jean")
+            ->setPrenom("Jean")
+            ->setMail("manager@gmail.com")
+            ->setPassword("Jean")
+            // ->setPassword($this->passwordEncoder->encodePassword($adherent, 'riles'))
+            ->setRoles([ADHERENT::ROLE_MANAGER]);
+        $this->manager->persist($adherentManager);
 
         $this->manager->flush();
     }
