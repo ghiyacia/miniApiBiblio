@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AdherentRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -72,6 +73,7 @@ class Adherent implements UserInterface
     private $roles;
     /**
      * @ORM\OneToMany(targetEntity=Pret::class, mappedBy="adherent")
+     * @ApiSubresource
      */
     private $prets;
 
