@@ -25,57 +25,34 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *     }
  * },
  *      collectionOperations={
- *           "get_coll_role_adherent"={
+ *           "gett"={
  *              "method" = "GET",
  *              "path"= "/adherent/livres",
  *              "normalization_context" = {
  *                "groups"= {"get_role_adherent"}
  *              }
  *           },
- *             "get_coll_role_manager"={
- *              "   method" = "GET",
- *                  "path"= "/manager/livres",
- *                  "access_control" = "is_granted('ROLE_MANAGER')",
- *                  "access_control_message" = "Vous n'avez pas le droits d'acceder a cette ressource"
- *              },
- *              "post"= {
+ *           "post"= {
  *                  "method"="POST",
  *                  "access_control" = "is_granted('ROLE_MANAGER')",
  *                  "access_control_message" = "Vous n'avez pas le droits d'acceder a cette ressource"    
- *              },
+ *            },
  * 
  *      itemOperations = {
- *           "get_item_role_adherent"={
+ *           "get"={
  *              "method" = "GET",
  *              "path"= "/adherent/livres/{id}",
- *              "access_control" = "is_granted('ROLE_ADHERENT')",
- *              "access_control_message" = "Vous n'avez pas le droits d'acceder a cette ressource"
  *              "normalization_context" = {
  *                "groups"= {"get_role_adherent"}
  *              }
  *           },
- * 
- *           "get_item_role_manager"={
- *              "method" = "GET",
- *              "path"= "/manager/livres/{id}",
- *                  "access_control" = "is_granted('ROLE_MANAGER')",
- *                  "access_control_message" = "Vous n'avez pas le droits d'acceder a cette ressource"
- *           }
- *      },
- *            "put_item_role_manager"={
+ *            "put"={
  *              "method" = "PUT",
  *              "path"= "/manager/livres/{id}",
  *              "denormalization_context" = {
  *              "groups"= {"put_manager"}
  *              "access_control" = "is_granted('ROLE_MANAGER')",
  *              "access_control_message" = "Vous n'avez pas le droits d'acceder a cette ressource"
- *              }
- *           },
- *           "put_item_role_admin"={
- *              "method" = "PUT",
- *              "path"= "/admin/livres/{id}",
- *              "denormalization_context" = {
- *                "groups"= {"put_admin"}
  *              }
  *           },
  *  *           "delet_item_role_admin"={
