@@ -41,3 +41,7 @@ security:
          - { path: ^/app/login, roles: IS_AUTHENTICATED_ANONTMOUSLY }
          - { path: ^/app/profile, roles: IS_AUTHENTICATED_FULLY }
 
+    role_hierarchy:
+        ROLE_MANAGER : ROLE_ADHERENT
+        ROLE_ADMIN: ROLE_MANAGER
+
